@@ -54,7 +54,7 @@ export default function App() {
       <div className="App">
         <ErrorBoundary>
         <Layout
-          header={<SearchBox />}
+          header={<SearchBox inputProps={{ placeholder: "Author, Title, or your favorite 'Quote'" }}/>}
           sideContent={
             <div>
               <Facet
