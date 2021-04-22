@@ -6,7 +6,7 @@ export default async function runRequest(body) {
     //     body: requestBody
     //   })
 
-    const response = await fetch("http://localhost:9200/gutenberg/_search", {
+    const response = await fetch("http://localhost:9200/gutenberg2/_search", {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(body)

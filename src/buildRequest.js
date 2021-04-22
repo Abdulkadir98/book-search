@@ -55,8 +55,8 @@ export default function buildRequest(state) {
           }
         },
         query: {
-          match_phrase: {
-            text: searchTerm.substring(1, searchTerm.length)
+          query_string: {
+            query: "\"" + searchTerm.substring(1, searchTerm.length) + "\""
           }
         },
         ...(size && { size }),
