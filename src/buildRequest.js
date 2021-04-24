@@ -66,6 +66,13 @@ export default function buildRequest(state) {
 
     if(filters && filters.length >= 1) {
       return {
+        highlight: {
+          fragment_size: 200,
+          number_of_fragments: 1,
+          fields: {
+            [filters[0].values[0].toLowerCase()]: {},
+          }
+        },
           query: {
             match: {
               [filters[0].values[0].toLowerCase()]: searchTerm

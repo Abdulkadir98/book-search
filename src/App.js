@@ -24,11 +24,30 @@ import './App.css';
 
 const config = {
   debug: true,
+  autocompleteQuery: {
+    // Customize the query for autocompleteResults
+    results: {
+      result_fields: {
+        // Add snippet highlighting
+        title: { snippet: { size: 100, fallback: true } },
+        nps_link: { raw: {} }
+      }
+    },
+    // Customize the query for autocompleteSuggestions
+    suggestions: {
+      types: {
+        // Limit query to only suggest based on "title" field
+        documents: { fields: ["title", "author"] }
+      },
+      // Limit the number of suggestions returned from the server
+      size: 4
+    }
+  },
   onResultClick: () => {
     /* Not implemented */
   },
-  onAutocompleteResultClick: () => {
-    /* Not implemented */
+  onAutocompleteResultClick: (props) => {
+
   },
   onAutocomplete: async ({ searchTerm }) => {
     const requestBody = buildRequest({ searchTerm });
@@ -43,7 +62,8 @@ const config = {
     const requestBody = buildRequest(state);
     const responseBody = await runRequest(requestBody);
     return buildState(responseBody, resultsPerPage);
-  }
+  },
+ 
 };
 
 export default function App() {
@@ -54,7 +74,9 @@ export default function App() {
       <div className="App">
         <ErrorBoundary>
         <Layout
-          header={<SearchBox inputProps={{ placeholder: "Author, Title, or your favorite 'Quote'" }}/>}
+          header={<SearchBox 
+            inputProps={{ placeholder: "Author, Title, or your favorite 'quote'" }}
+            />}
           sideContent={
             <div>
               <Facet
