@@ -67,7 +67,7 @@ def build_json_document_to_index(files):
 
 
 def main():
-    files_to_process = listdir(PATH_TO_PROCESSED_DIR)[:8000]
+    files_to_process = listdir(PATH_TO_PROCESSED_DIR)[:10000]
     np.random.shuffle(files_to_process)
     build_json_document_to_index(files_to_process)  # First 10,000 files only
 
