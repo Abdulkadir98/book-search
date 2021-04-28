@@ -77,7 +77,9 @@ export default function buildRequest(state) {
             match: {
               [filters[0].values[0].toLowerCase()]: searchTerm
             }
-          }
+          },
+          ...(size && { size }),
+          ...(from && { from })
         }
     }
 
